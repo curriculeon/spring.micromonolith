@@ -1,0 +1,77 @@
+<script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+
+
+<!--<form action="/person-controller/read" method="get">-->
+    <!--<input id="read-button" type="submit" value="read"/>-->
+<!--</form>-->
+
+
+<!--<form action="/person-controller/update" method="put">-->
+    <!--<input id="update-button" type="submit" value="update"/>-->
+<!--</form>-->
+
+
+<!--<form action="/person-controller/delete" method="delete">-->
+    <!--<input id="delete-button" type="submit" value="delete"/>-->
+<!--</form>-->
+
+
+<form action="/person-controller/read-all" method="get">
+    <input id="read-all-button" type="submit" value="read-all"/>
+</form>
+
+
+<form action="/person-controller/create-default" method="post">
+    <input id="create-default-button" type="submit" value="create-leon"/>
+</form>
+
+
+First Name: <input id="fname"><br>
+Last Name: <input id="lname"><br>
+<form action="/person-controller/create" method="post">
+    <input id="create-button" type="submit" value="create"/>
+</form>
+
+
+
+<script>
+class Person {
+  constructor(id_, fname_, lname_) {
+    this.id = id_;
+    this.firstName = fname_;
+    this.lastName = lname_;
+  }
+}
+
+let firstName = document.getElementById("fname").value;
+let lastName = document.getElementById("lname").value;
+let jsonPerson = new Person(0, firstName, lastName);
+
+console.log(jsonPerson);
+
+_postOnClick(
+    "create-button",
+    "localhost:8091/person-controller/create",
+    jsonPerson);
+
+
+function _postOnClick(buttonId, endpoint, args){
+    $("#" + buttonId).click(function() {
+        $.ajax({
+            type: "POST",
+            url: endpoint,
+            data: args,
+            dataType: "application/x-www-form-urlencoded",
+            success : function(response) {
+                    alert(JSON.stringify(response));
+                    },
+                    error: function(){                      
+                        alert('Error while request..');
+                    }
+        });
+    });
+}
+</script>
