@@ -9,5 +9,6 @@
 * Navigate to **your github profile** to find the _newly forked repository_.
 * Clone the repository from **your account** into your `~/dev` directory.
 * Open the newly cloned project in a code editor (IntelliJ, for example).
+* This has been done.
 
-## This is a test
+## This is a not a test
