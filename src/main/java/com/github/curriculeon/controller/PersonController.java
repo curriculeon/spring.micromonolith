@@ -28,7 +28,7 @@ public class PersonController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ResponseEntity<Person> create(@RequestParam Person person) {
+    public ResponseEntity<Person> create(@RequestBody Person person) {
         Person responseBody = service.create(person);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
@@ -43,13 +43,13 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity<Person> update(@PathVariable Long id, @RequestParam Person person) {
+    public ResponseEntity<Person> update(@PathVariable Long id, @RequestBody Person person) {
         Person responseBody = service.update(id, person);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Person> delete(@PathVariable Long id) {
         Person responseBody = service.delete(id);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
