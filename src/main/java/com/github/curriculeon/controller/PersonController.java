@@ -1,12 +1,14 @@
 package com.github.curriculeon.controller;
 
+
+
 import com.github.curriculeon.model.Person;
 import com.github.curriculeon.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RequestMapping(value = "/person-controller")
@@ -28,12 +30,11 @@ public class PersonController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ResponseEntity<Person> create(@RequestBody Person person) {
+    public @ResponseBody ResponseEntity<Person> create(@RequestBody Person person){
         Person responseBody = service.create(person);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
-
 
     @RequestMapping(value = "/read", method = RequestMethod.GET)
     public ResponseEntity<Person> read(@PathVariable Long id) {
