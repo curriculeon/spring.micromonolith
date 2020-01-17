@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RequestMapping(value = "/person-controller")
 @RestController
 public class PersonController {
@@ -25,7 +26,6 @@ public class PersonController {
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
-
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<Person> create(@RequestBody Person person) {
