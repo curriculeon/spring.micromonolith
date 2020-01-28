@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/person-controller")
 @RestController
 public class PersonController {
@@ -35,15 +35,15 @@ public class PersonController {
     }
 
 
-    @RequestMapping(value = "/read", method = RequestMethod.GET)
+    @RequestMapping(value = "/read/{id}", method = RequestMethod.GET)
     public ResponseEntity<Person> read(@PathVariable Long id) {
         Person responseBody = service.read(id);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity<Person> update(@PathVariable Long id, @RequestParam Person person) {
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Person> update(@PathVariable Long id, @RequestBody Person person) {
         Person responseBody = service.update(id, person);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
