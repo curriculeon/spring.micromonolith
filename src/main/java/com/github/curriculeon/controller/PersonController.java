@@ -3,6 +3,7 @@ package com.github.curriculeon.controller;
 import com.github.curriculeon.model.Person;
 import com.github.curriculeon.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,12 @@ public class PersonController {
         Person responseBody = service.create(new Person(0L, "Leon", "Hunter"));
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
+    }
+
+    @RequestMapping(value = "/get-bean", method = RequestMethod.GET)
+    @Qualifier("default-person")
+    public ResponseEntity<Person> getPersonBean(Person person) {
+        return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
 
