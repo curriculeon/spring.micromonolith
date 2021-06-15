@@ -14,7 +14,6 @@ public class Person {
     String lastName;
 
     public Person() {
-
     }
 
     public Person(Long id, String firstName, String lastName) {
@@ -24,7 +23,7 @@ public class Person {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -32,7 +31,7 @@ public class Person {
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public void setFirstName(String firstName) {
@@ -40,7 +39,7 @@ public class Person {
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public void setLastName(String lastName) {
