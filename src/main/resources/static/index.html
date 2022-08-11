@@ -31,7 +31,7 @@
 
 First Name: <input id="fname"><br>
 Last Name: <input id="lname"><br>
-<form action="/person-controller/create" method="post">
+<form action="/person-controller/create" method="post" accept-charset="utf-8">
     <input id="create-button" type="submit" value="create"/>
 </form>
 
@@ -59,8 +59,8 @@ function _postOnClick(buttonId, endpoint){
         $.ajax({
             type: "POST",
             url: endpoint,
-            data: JSON.stringify(args),
-            dataType: "application/x-www-form-urlencoded",
+            data: args,
+            dataType: "application/x-www-form-urlencoded; charset=utf-8",
             success : function(response) {
                 alert(JSON.stringify(response));
             },
