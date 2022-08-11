@@ -5,11 +5,13 @@ import com.github.curriculeon.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/person-controller")
 @RestController
 public class PersonController {
@@ -34,7 +36,7 @@ public class PersonController {
     }
 
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(path = "/create", method = RequestMethod.POST)
     public ResponseEntity<Person> create(@RequestBody Person person) {
         Person responseBody = service.create(person);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);

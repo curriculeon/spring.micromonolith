@@ -29,49 +29,58 @@
 </form>
 
 
+
 First Name: <input id="fname"><br>
 Last Name: <input id="lname"><br>
-<form action="/person-controller/create" method="post">
-    <input id="create-button" type="submit" value="create"/>
+<form>
+    <button onclick="createClick(event)">Create Person</button>
 </form>
 
 
 
 <script>
-class Person {
-  constructor(id_, fname_, lname_) {
-    this.id = id_;
-    this.firstName = fname_;
-    this.lastName = lname_;
-  }
-}
+    class Person {
+        constructor(id_, fname_, lname_) {
+            this.id = id_;
+            this.firstName = fname_;
+            this.lastName = lname_;
+        }
+    }
 
-let firstName = document.getElementById("fname").value;
-let lastName = document.getElementById("lname").value;
-let jsonPerson = new Person(0, firstName, lastName);
+    let firstName = document.getElementById("fname").value;
+    let lastName = document.getElementById("lname").value;
+    let jsonPerson = new Person(0, firstName, lastName);
 
-console.log(jsonPerson);
+    console.log(jsonPerson);
 
-_postOnClick(
-    "create-button",
-    "localhost:8091/person-controller/create",
-    jsonPerson);
+    function createClick(e) {
+        e.preventDefault();
+        console.log("click")
+        let firstName1 = document.getElementById("fname").value;
+        let lastName1 = document.getElementById("lname").value;
+        let jsonPerson1 = new Person(0, firstName1, lastName1);
+        let personData = JSON.stringify(jsonPerson1);
+        console.log(personData)
 
 
-function _postOnClick(buttonId, endpoint, args){
-    $("#" + buttonId).click(function() {
         $.ajax({
             type: "POST",
-            url: endpoint,
-            data: args,
-            dataType: "application/x-www-form-urlencoded",
-            success : function(response) {
-                    alert(JSON.stringify(response));
-                    },
-                    error: function(){                      
-                        alert('Error while request..');
-                    }
+            crossDomain: true,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            url: "http://localhost:8080/person-controller/create",
+            data: personData,
+            dataType: "JSON ",
+            success: function (response) {
+                alert(JSON.stringify(response));
+            },
+            error: function () {
+                alert('Error while request..');
+            }
         });
-    });
-}
+
+    }
 </script>
