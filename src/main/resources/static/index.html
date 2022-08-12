@@ -33,7 +33,7 @@
 First Name: <input id="fname"><br>
 Last Name: <input id="lname"><br>
 <form>
-    <button onclick="createClick(event)">Create Person</button>
+    <button onclick="create(event)">Create Person</button>
 </form>
 
 
@@ -47,13 +47,7 @@ Last Name: <input id="lname"><br>
         }
     }
 
-    let firstName = document.getElementById("fname").value;
-    let lastName = document.getElementById("lname").value;
-    let jsonPerson = new Person(0, firstName, lastName);
-
-    console.log(jsonPerson);
-
-    function createClick(e) {
+    function create(e) {
         e.preventDefault();
         console.log("click")
         let firstName1 = document.getElementById("fname").value;
